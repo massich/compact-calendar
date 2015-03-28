@@ -1,33 +1,18 @@
 \documentclass[a4paper]{article}
 
-\usepackage{fontspec}
-\setmainfont[
-Mapping=tex-text,Numbers={OldStyle,Proportional},Scale=.96,
-BoldFont={MetaPro-Bold},
-BoldItalicFont={MetaPro-BoldItalic},
-ItalicFont={MetaPro-BookItalic}
-]{MetaPro-Book}
+%\usepackage{fontspec}
+%\setmainfont[
+%Mapping=tex-text,Numbers={OldStyle,Proportional},Scale=.96,
+%BoldFont={MetaPro-Bold},
+%BoldItalicFont={MetaPro-BoldItalic},
+%ItalicFont={MetaPro-BookItalic}
+%]{MetaPro-Book}
 
 \usepackage{uulm-logos}
 
 \usepackage[margin=2cm]{geometry}
 \usepackage{tikz}
 \usetikzlibrary{calendar,decorations.markings}
-\def\pgfcalendarmonthname#1{%
-\translate{\ifcase#1%
-\or Januar
-\or Februar
-\or Maerz
-\or April
-\or Mai
-\or Juni
-\or Juli
-\or August
-\or September
-\or Oktober
-\or November
-\or Dezember
-\fi}}
 
 % Color Theme
 \definecolor{uulm}{RGB}{130,161,180}
@@ -50,33 +35,32 @@ ItalicFont={MetaPro-BookItalic}
 \node[anchor=east] at (\linewidth,1.5em) {\vslogo};
 \end{tikzpicture}
 
-\par\vspace{2em}
-\noindent{\large Wintersemester 2014}
-\vspace{1em}
-
 \tikzstyle{feiertag}=[uulm-akzent!40]
 \tikzstyle{first}+=[black,font=\bfseries]
 \tikzstyle{semester}+=[uulm-in,font=\bfseries]
 
 \noindent\begin{tikzpicture}
-\calendar[dates=2014-10-01 to 2015-02-28,%
-week list,month label left,month yshift=0,day yshift=2em%
-] (2014w)%
-if (at most=2014-10-13) [uulm-akzent!40] else [uulm-akzent]
-if (at least=2015-02-14) [uulm-akzent!40]
-if (between=2014-12-24 and 2015-01-05) [uulm-akzent!40]
-% Feiertage
-if (equals=2014-10-03) [feiertag]
-%
-if (weekend) [uulm-akzent!40]
-if (day of month=1) [first]
-% Semesterbeginn/-ende
-if (equals=2014-10-13) [semester]
-if (equals=2015-02-14) [semester]
-;
+  \calendar[dates=2015-01-01 to 2015-12-last,%
+            week list,
+            month label left,
+            month yshift=0,
+            day yshift=1.2em%
+           ](myCal)%
+           if (at most=2015-03-27) [uulm-akzent!40] else [uulm-akzent]
+          if (at least=2015-12-14) [uulm-akzent!40]
+          if (between=2015-12-24 and 2015-01-05) [uulm-akzent!40]
+          % Feiertage
+          if (equals=2015-10-03) [feiertag]
+          %
+          if (weekend) [uulm-akzent!40]
+          if (day of month=1) [first]
+          % Semesterbeginn/-ende
+          if (equals=2015-10-13) [semester]
+          if (equals=2015-02-14) [semester]
+          ;
 
-\coordinate (top) at (2014w-2014-10-05.south east);
-\coordinate (bottom) at (2014w-2015-02-22.south east |- 2014w-2015-02-28.south east);
+\coordinate (top) at (myCal-2015-01-05.south east);
+\coordinate (bottom) at (myCal-2015-12-22.south east |- myCal-2015-12-28.south east);
 
 \coordinate (right) at (\linewidth,0);
 
